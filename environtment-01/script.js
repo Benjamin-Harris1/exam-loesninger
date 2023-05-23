@@ -92,7 +92,7 @@ function getAdmin(users) {
 2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
 3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.*/
 
-async function start() {
+/*async function start() {
   const users = await getUsers();
   console.log(users);
 
@@ -108,7 +108,7 @@ async function getUsers() {
 
 function showUsers(users) {
   for (const user of users) {
-    const html = /*html*/ `
+    const html = /*html*/ /*`
     <ul>
     <li>Name: ${user.name} - role: ${user.role} - active: ${user.active}</li>
     </ul>
@@ -124,4 +124,50 @@ function checkActive(user) {
 function getActive(users) {
   const results = users.filter(checkActive);
   return results;
+}*/
+
+/*1. Lav en funktion der indlæser JSON-filen `users.json` og gemmer listen i en global variabel.
+2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
+3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.*/
+
+const users = [];
+console.log(users);
+async function start() {
+  const data = await getUsers();
+  users.push(...data);
+  showUsers();
 }
+
+async function getUsers() {
+  const response = await fetch("users.json");
+  const data = await response.json();
+  return data;
+}
+
+function showUsers() {
+  document.querySelector("#userlist").innerHTML = "";
+
+  for (const user of users) {
+    if (user.active === true) {
+      const html = /*html*/ `
+  <ul>
+  <li>Name: ${user.name} - role: ${user.role} - active: ${user.active}</li>
+  </ul>`;
+
+      document.querySelector("#userlist").insertAdjacentHTML("beforeend", html);
+    }
+  }
+}
+
+function createUser(name, active, role) {
+  const user = {
+    name: name,
+    active: active,
+    role: role,
+  };
+
+  users.push(user);
+  return user;
+}
+
+createUser("børge", true, "admin");
