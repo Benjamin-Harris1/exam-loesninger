@@ -3,10 +3,12 @@
 window.addEventListener("load", start);
 
 const basket = [];
+const products = [];
 
 async function start() {
   console.log("Hello");
-  const products = await getProducts();
+  const product = await getProducts();
+  products.push(...product);
   showProducts(products);
 }
 
@@ -34,22 +36,27 @@ function showProducts(products) {
       .querySelector("#products article:last-child .add-btn")
       .addEventListener("click", () => addProduct(product.name, product.weight, product.price));
   }
-  console.log(basket);
 }
 
 function addProduct(name, weight, price) {
-  const product = {
-    name: name,
-    weight: weight,
-    price: price,
-  };
+  let incrementProduct = basket.find((product) => product.name === name);
 
-  basket.push(product);
+  if (incrementProduct) {
+    incrementProduct.quantity++;
+  } else {
+    const product = {
+      name: name,
+      weight: weight,
+      price: price,
+      quantity: 1,
+    };
+
+    basket.push(product);
+  }
   showBasket();
-  return product;
 }
 
-function showBasket(product) {
+function showBasket() {
   document.querySelector("#basket").innerHTML = "";
   for (const product of basket) {
     const html = /*html*/ `
@@ -64,6 +71,7 @@ function showBasket(product) {
               <td>PRIS I ALT,-</td>
             </tr> 
         `;
+    console.log(basket);
     document.querySelector("#basket").insertAdjacentHTML("beforeend", html);
   }
 }

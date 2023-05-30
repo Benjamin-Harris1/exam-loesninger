@@ -132,6 +132,7 @@ function getActive(users) {
 
 const users = [];
 console.log(users);
+
 async function start() {
   const data = await getUsers();
   users.push(...data);
