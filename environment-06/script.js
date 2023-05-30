@@ -62,9 +62,9 @@ function showBasket() {
     const html = /*html*/ `
         <tr>
               <td>
-                <button class="remove">-</button>
-                  ANTAL
-                <button class="add">+</button>
+              <button class="remove" onclick="removeFromBasket('${product.name}')">-</button>
+                  ${product.quantity}
+                <button class="add" onclick="addProduct('${product.name}')">+</button>
               </td>
               <td>${product.name}</td>
               <td>${product.price},-</td>
@@ -74,4 +74,19 @@ function showBasket() {
     console.log(basket);
     document.querySelector("#basket").insertAdjacentHTML("beforeend", html);
   }
+}
+
+function removeFromBasket() {
+  let productIndex = basket.findIndex((product) => product.name);
+
+  if (productIndex !== -1) {
+    if (basket[productIndex].quantity > 1) {
+      basket[productIndex].quantity--;
+    } else basket.splice(productIndex, 1);
+  }
+  showBasket();
+}
+
+function showBasketTotals() {
+  
 }
