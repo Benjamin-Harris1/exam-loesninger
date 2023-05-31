@@ -52,12 +52,11 @@ function UsersByRole(users) {
 2. Lav en funktion der viser listen på websiden - hver user skal vises med navn og hvorvidt de er aktive eller ej.
 3. Filtrér listen så den kun viser admin-brugere. */
 
-/*async function start() {
+async function start() {
   const user = await getData();
   console.log(user);
-
-  const admin = getAdmin(user);
-  showUsers(admin);
+  showUsers(user);
+  roleCount(user);
 }
 
 async function getData() {
@@ -68,29 +67,44 @@ async function getData() {
 
 function showUsers(users) {
   for (const user of users) {
-    /*if (user.role === "admin") {
-    const html  = /*html*/
-/*  <ul>
+    // if (user.role === "admin")
+    {
+      const html =
+        /*html*/
+        `
+        <ul>
         <li>ID: ${user.id} - role: ${user.role}</li>
         </ul>`;
 
-    document.querySelector("#userlist").insertAdjacentHTML("beforeend", html);
-    /*}
+      document.querySelector("#userlist").insertAdjacentHTML("beforeend", html);
+    }
   }
 }
 
-function checkRole(user) {
-  return user.role === "admin";
+function roleCount(users) {
+  let adminCount = 0;
+  let userCount = 0;
+  let guestCount = 0;
+
+  for (const user of users) {
+    if (user.role === "admin") {
+      adminCount++;
+      document.querySelector("#admin-count").textContent = adminCount;
+    } else if (user.role === "guest") {
+      guestCount++;
+      document.querySelector("#guest-count").textContent = guestCount;
+    } else if (user.role === "user") {
+      userCount++;
+      document.querySelector("#user-count").textContent = userCount;
+    }
+  }
 }
 
-function getAdmin(users) {
-  const results = users.filter(checkRole);
-  return results;
-}*/
+/*`
 
 /* 1. Lav en funktion der indlæser JSON-filen `users.json` og gemmer listen i en global variabel.
 2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
-3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.*/
+3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt. */
 
 /*async function start() {
   const users = await getUsers();
@@ -108,8 +122,8 @@ async function getUsers() {
 
 function showUsers(users) {
   for (const user of users) {
-    const html = /*html*/ /*`
-    <ul>
+    const html = /*html*/
+/*<ul>
     <li>Name: ${user.name} - role: ${user.role} - active: ${user.active}</li>
     </ul>
     `;
@@ -130,7 +144,7 @@ function getActive(users) {
 2. Lav en funktion der viser listen på websiden - vis kun aktive brugere.
 3. Lav en funktion der modtager `name`, `active` og `role`, opretter et `user` objekt med de tre properties, og tilføjer objektet til den globale liste. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.*/
 
-const users = [];
+/*const users = [];
 console.log(users);
 
 async function start() {
@@ -150,8 +164,8 @@ function showUsers() {
 
   for (const user of users) {
     if (user.active === true) {
-      const html = /*html*/ `
-  <ul>
+      const html = /*html*/
+/* <ul>
   <li>Name: ${user.name} - role: ${user.role} - active: ${user.active}</li>
   </ul>`;
 
@@ -171,4 +185,4 @@ function createUser(name, active, role) {
   return user;
 }
 
-createUser("børge", true, "admin");
+createUser("børge", true, "admin");*/
