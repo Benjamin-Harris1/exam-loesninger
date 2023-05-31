@@ -3,12 +3,11 @@
 window.addEventListener("load", start);
 
 const basket = [];
-const products = [];
+let products = [];
 
 async function start() {
   console.log("Hello");
-  const product = await getProducts();
-  products.push(...product);
+  products = await getProducts();
   showProducts(products);
 }
 
@@ -39,7 +38,7 @@ function showProducts(products) {
 }
 
 function addProduct(name, weight, price) {
-  let incrementProduct = basket.find((product) => product.name === name);
+  let incrementProduct = basket.find(product => product.name === name);
 
   if (incrementProduct) {
     incrementProduct.quantity++;
@@ -54,39 +53,61 @@ function addProduct(name, weight, price) {
     basket.push(product);
   }
   showBasket();
+  showBasketTotals();
 }
 
 function showBasket() {
-  document.querySelector("#basket").innerHTML = "";
+  document.querySelector("#basket tbody").innerHTML = "";
   for (const product of basket) {
     const html = /*html*/ `
         <tr>
               <td>
-              <button class="remove" onclick="removeFromBasket('${product.name}')">-</button>
+              <button class="remove">-</button>
                   ${product.quantity}
-                <button class="add" onclick="addProduct('${product.name}')">+</button>
+                <button class="add">+</button>
               </td>
               <td>${product.name}</td>
               <td>${product.price},-</td>
               <td>PRIS I ALT,-</td>
             </tr> 
         `;
-    console.log(basket);
-    document.querySelector("#basket").insertAdjacentHTML("beforeend", html);
+    document.querySelector("#basket tbody").insertAdjacentHTML("beforeend", html);
+    document.querySelector("#basket tbody tr:last-child .remove").addEventListener("click", () => removeFromBasket(product.name));
+    document.querySelector("#basket tbody tr:last-child .add").addEventListener("click", () => addProduct(product.name));
   }
 }
 
 function removeFromBasket() {
-  let productIndex = basket.findIndex((product) => product.name);
+  let productInBasket = basket.findIndex(product => product.name);
 
-  if (productIndex !== -1) {
-    if (basket[productIndex].quantity > 1) {
-      basket[productIndex].quantity--;
-    } else basket.splice(productIndex, 1);
+  if (productInBasket) {
+    productInBasket.quantity--;
+    if (productInBasket.quantity === 0) {
+      const index = basket.splice(index, 1);
+    }
+    showBasket();
   }
-  showBasket();
 }
 
 function showBasketTotals() {
-  
+  const totalProducts = basket.length;
+  document.querySelector("#total-products").textContent = totalProducts;
+
+  let totalInBasket = 0;
+  for (const productInBasket of basket) {
+    totalInBasket += productInBasket.quantity;
+  }
+
+  document.querySelector("#total-in-basket").textContent = totalInBasket;
+
+  let totalPrice = 0;
+  let totalWeight = 0;
+
+  for (const productInBasket of basket) {
+    totalPrice += productInBasket.price * productInBasket.quantity;
+    totalWeight += productInBasket.weight * productInBasket.quantity;
+  }
+
+  document.querySelector("#total-price").textContent = totalPrice;
+  document.querySelector("#total-weight").textContent = totalWeight;
 }
