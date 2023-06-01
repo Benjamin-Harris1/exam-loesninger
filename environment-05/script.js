@@ -83,7 +83,7 @@ sortByECTS();*/
 
 // ØVELSE 13
 
-import { courses } from "./courses.js";
+/* import { courses } from "./courses.js";
 
 window.addEventListener("load", start);
 
@@ -117,4 +117,34 @@ function filterByECTSOption(option) {
     return course.ectsPoints === Number(option);
     // return course.ectsPoints.toString() === option;
   });
+}*/
+
+/* 1. Importér `courses`-listen i `script.js`.
+2. Lav en funktion, der viser listen af alle `course`-objekter på websiden. Vis som minimum `name`, `startDate` `ectsPoints`.
+3. Lav en funktion, der sorterer listen af `courses` stigende efter `startDate`. Vis sorteringen på websiden.*/
+
+// ØVELSE 14
+
+import { courses } from "./courses.js";
+
+window.addEventListener("load", start);
+
+function start() {
+  console.log("hello");
+  sortByDate();
+  showCourses();
+}
+
+function showCourses() {
+  document.querySelector("#courses-list").innerHTML = "";
+  for (const course of courses) {
+    const html = `
+            <li>${course.name} - ${course.ectsPoints} ECTS - start date: ${course.startDate}</li>
+        `;
+    document.querySelector("#courses-list").insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function sortByDate() {
+  return courses.sort((b, a) => new Date(a.startDate) - new Date(b.startDate));
 }
