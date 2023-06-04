@@ -52,8 +52,11 @@ function UsersByRole(users) {
 2. Lav en funktion der viser listen på websiden - hver user skal vises med navn og hvorvidt de er aktive eller ej.
 3. Filtrér listen så den kun viser admin-brugere. */
 
+// const users = [];
+
 async function start() {
   const user = await getData();
+  // users.push(user);
   console.log(user);
   showUsers(user);
   roleCount(user);
@@ -89,14 +92,14 @@ function roleCount(users) {
   for (const user of users) {
     if (user.role === "admin") {
       adminCount++;
-      document.querySelector("#admin-count").textContent = adminCount;
     } else if (user.role === "guest") {
       guestCount++;
-      document.querySelector("#guest-count").textContent = guestCount;
     } else if (user.role === "user") {
       userCount++;
-      document.querySelector("#user-count").textContent = userCount;
     }
+    document.querySelector("#admin-count").textContent = adminCount;
+    document.querySelector("#guest-count").textContent = guestCount;
+    document.querySelector("#user-count").textContent = userCount;
   }
 }
 
