@@ -80,3 +80,39 @@ function addTeacher(name, email) {
 addTeacher("Benjamin", "mail@mail.com");
 
 console.log(teachers);
+
+// ØVELSE 9
+
+/* 1. Importer `teachers`-listen i `script.js`.
+2. Lav en funktion i `script.js`, der viser listen af alle `teacher`-objekter på websiden.
+3. Lav en funktion der kan sortere listen efter `name` og en anden funktion, der kan sortere listen efter `email`.*/
+
+/* import { teachers } from "./teachers.js";
+
+window.addEventListener("load", start);
+
+function start() {
+  let copy = [...teachers];
+  let copy2 = [...teachers];
+  const sortedByName = sortByName(copy);
+  const sortedByEmail = sortByEmail(copy2);
+  showTeachers(sortedByEmail);
+}
+
+function showTeachers(teacherList) {
+  document.querySelector("#teachers-list").innerHTML = "";
+  for (const teacher of teacherList) {
+    const html = `
+      <li>${teacher.name} - ${teacher.email}</li>
+    `;
+    document.querySelector("#teachers-list").insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function sortByName(sortedList) {
+  return sortedList.sort((a, b) => a.name.localeCompare(b.name));
+}
+
+function sortByEmail(sortedList) {
+  return sortedList.sort((a, b) => a.email.localeCompare(b.email));
+}*/

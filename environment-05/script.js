@@ -125,7 +125,7 @@ function filterByECTSOption(option) {
 
 // ØVELSE 14
 
-import { courses } from "./courses.js";
+/* import { courses } from "./courses.js";
 
 window.addEventListener("load", start);
 
@@ -147,4 +147,42 @@ function showCourses() {
 
 function sortByDate() {
   return courses.sort((b, a) => new Date(a.startDate) - new Date(b.startDate));
+} */
+
+// øvelse 11
+
+/* 1. Importer `courses`-listen i `script.js`.
+2. Lav en funktion, der viser listen af alle `course`-objekter på websiden. Vis som minimum `name`, `ectsPoints` og `teacher`.
+3. Lav en funktion der tilføjer et nyt `course`-objekt til listen. Sørg for at nye `course`-objekter vises på websiden.*/
+
+import { courses } from "./courses.js";
+
+window.addEventListener("load", start);
+
+function start() {
+  console.log("herro");
+  courses.forEach(showCourses);
 }
+
+function showCourses(course) {
+  const html = `
+    <li>${course.name}, ${course.ectsPoints}, ${course.teacher}</li>
+ `;
+  document.querySelector("#courses-list").insertAdjacentHTML("beforeend", html);
+}
+
+function addCourses(name, startDate, endDate, ectsPoints, maxStudents, teacher) {
+  const course = {
+    name: name,
+    startDate: startDate,
+    endDate: endDate,
+    ectsPoints: Number(ectsPoints),
+    maxStudents: Number(maxStudents),
+    teacher: teacher,
+  };
+  courses.push(course);
+  return course;
+}
+
+addCourses("Beasd", "21-01-01", "21-02-02", 15, 20, "Jørgen");
+console.log(courses);

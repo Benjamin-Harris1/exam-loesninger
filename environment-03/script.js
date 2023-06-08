@@ -129,3 +129,70 @@ function formClicked(event) {
   showList();
   console.log(products);
 }
+
+// ØVELSE 6
+
+/* 1. Lav en liste med tre `product`-objekter. Hvert objekt har følgende properties: `name` (string), `price` (number) og `inStock` (boolean).
+2. Lav en funktion der viser listen af alle `product`-objekter - vis kun produkter hvor `inStock` er `true`.
+3. Lav en funktion der ved hjælp af formularen, opretter et nyt `product`-objekt og tilføjer det til listen. Listen på websiden opdateres hver gang, der oprettes et nyt objekt.*/
+
+/* const products = [
+  {
+    name: "Product-01",
+    price: 7,
+    inStock: false,
+  },
+  {
+    name: "Product-02",
+    price: 17,
+    inStock: true,
+  },
+  {
+    name: "Product-03",
+    price: 21,
+    inStock: false,
+  },
+];
+
+window.addEventListener("load", start);
+
+function start() {
+  console.log("herro");
+  document.querySelector("#create-form").addEventListener("submit", formClicked);
+  showProducts();
+}
+
+function showProducts() {
+  document.querySelector("#list-container").innerHTML = "";
+  for (const product of products) {
+    if (product.inStock === true) {
+      const html = `
+            <li>${product.name}, ${product.price}, ${product.inStock}</li>
+        `;
+      document.querySelector("#list-container").insertAdjacentHTML("beforeend", html);
+    }
+  }
+}
+
+function addProduct(name, price, inStock) {
+  const product = {
+    name: name,
+    price: Number(price),
+    inStock: inStock,
+  };
+
+  products.push(product);
+  console.log(products);
+  return product;
+}
+
+function formClicked(event) {
+  event.preventDefault();
+
+  const form = event.target;
+  const name = form.name.value;
+  const price = form.price.value;
+  const inStock = form.inStock.checked;
+  addProduct(name, price, inStock);
+  showProducts();
+}*/
