@@ -6,7 +6,7 @@
 2. Lav en funktion til at udskrive listen af sange på websiden - tilføj en `upvote`-knap til hver sang.
 3. Få `upvote`-knappen til flytte den pågældende sang én tak op i listen - udskriv derefter listen igen. */
 
-/*const songs = [
+const songs = [
   {
     artist: "Yeahw",
     title: "Something",
@@ -49,7 +49,7 @@ function showSongs() {
       }
     }
   }
-}*/
+}
 
 // ØVELSE 22
 
@@ -57,7 +57,7 @@ function showSongs() {
 2. Lav en funktion til at udskrive listen af sange på websiden- tilføj en `remove`-knap til hver sang.
 3. Få remove-knappen til at fjerne den pågældende sang fra listen, og udskriv listen igen.*/
 
-window.addEventListener("load", start);
+/*window.addEventListener("load", start);
 
 async function start() {
   const playlist = await getData();
@@ -86,4 +86,4 @@ function removeSong(playlist, song) {
   const songId = playlist.indexOf(song);
   playlist.splice(songId, 1);
   showPlaylist(playlist);
-}
+}*/
