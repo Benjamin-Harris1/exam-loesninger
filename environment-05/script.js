@@ -1,5 +1,3 @@
-"use strict";
-
 /* 1. Importer `courses`-listen i `script.js`.
 2. Lav en funktion, der viser listen af alle `course`-objekter på websiden. Vis som minimum `name`, `ectsPoints` og `teacher`.
 3. Lav en funktion der tilføjer et nyt `course`-objekt til listen. Sørg for at nye `course`-objekter vises på websiden. */
@@ -155,7 +153,7 @@ function sortByDate() {
 2. Lav en funktion, der viser listen af alle `course`-objekter på websiden. Vis som minimum `name`, `ectsPoints` og `teacher`.
 3. Lav en funktion der tilføjer et nyt `course`-objekt til listen. Sørg for at nye `course`-objekter vises på websiden.*/
 
-import { courses } from "./courses.js";
+/*import { courses } from "./courses.js";
 
 window.addEventListener("load", start);
 
@@ -185,4 +183,38 @@ function addCourses(name, startDate, endDate, ectsPoints, maxStudents, teacher) 
 }
 
 addCourses("Beasd", "21-01-01", "21-02-02", 15, 20, "Jørgen");
-console.log(courses);
+console.log(courses);*/
+
+/*1. Importér `courses`-listen i `script.js`.
+2. Lav en funktion, der viser listen af alle `course`-objekter på websiden. Vis som minimum `name` og `ectsPoints`.
+3. Lav en funktion, der filtrer listen af `courses` på baggrund af valgte `option` i `select` (se `environment-05`). Filtreringen ændrer sig hver gang en ny `option` vælges.*/
+
+"use strict";
+
+import { courses } from "./courses.js";
+
+window.addEventListener("load", start);
+
+function start() {
+  console.log(courses);
+  showCourses(courses);
+  document.querySelector("#select-filter-ects").addEventListener("change", filterBySelect);
+}
+
+function showCourses(courses) {
+  document.querySelector("#courses-list").innerHTML = "";
+  for (const course of courses) {
+    const html = `
+      <li>${course.name}, ${course.ectsPoints} ECTS</li>
+    `;
+    document.querySelector("#courses-list").insertAdjacentHTML("beforeend", html);
+  }
+}
+
+function filterBySelect(event) {
+  if (event.target.value === "alle") {
+    showCourses(courses);
+  } else {
+    showCourses(courses.filter((course) => course.ectsPoints === Number(event.target.value)));
+  }
+}
